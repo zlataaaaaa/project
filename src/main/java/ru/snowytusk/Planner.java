@@ -41,9 +41,7 @@ public class Planner {
 		}
 
 		var meetings = new HashSet<Meeting>();
-		for (Entry<Plan, HashSet<Member>> planWithMembers : plansWithMembers.entrySet()) {
-			meetings.add(new Meeting(planWithMembers.getKey(), new ArrayList<>(planWithMembers.getValue())));
-		}
+		plansWithMembers.forEach((key, value) -> meetings.add(new Meeting(key, new ArrayList<>(value))));
 
 		return meetings;
 	}
