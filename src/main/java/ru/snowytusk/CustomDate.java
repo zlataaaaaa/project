@@ -11,13 +11,13 @@ public class CustomDate {
 		this.date = date;
 	}
 
-	public LocalDateTime getDate() {
-		return date;
-	}
-
 	public CustomDate(int year, int month, int dayOfMonth, int hourOfDay, int minute) {
 		CheckParametersForCorrectness(year, month, dayOfMonth, hourOfDay, minute);
 		date = new GregorianCalendar(year, month, dayOfMonth, hourOfDay, minute).toZonedDateTime().toLocalDateTime();
+	}
+
+	public LocalDateTime getDate() {
+		return date;
 	}
 
 	private void CheckParametersForCorrectness(int year, int month, int dayOfMonth, int hourOfDay, int minute) {
@@ -36,15 +36,15 @@ public class CustomDate {
 	}
 
 	@Override
+	public int hashCode() {
+		return Objects.hash(getDate());
+	}
+
+	@Override
 	public boolean equals(final Object o) {
 		if (this == o) return true;
 		if (!(o instanceof CustomDate)) return false;
 		final CustomDate that = (CustomDate) o;
 		return getDate().equals(that.getDate());
-	}
-
-	@Override
-	public int hashCode() {
-		return Objects.hash(getDate());
 	}
 }

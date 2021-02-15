@@ -9,7 +9,7 @@ public class Member {
 	}
 
 	private void CheckParametersForNull(String name) {
-		if (name ==null )
+		if (name == null)
 			throw new NullPointerException();
 	}
 

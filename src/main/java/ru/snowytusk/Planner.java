@@ -33,11 +33,9 @@ public class Planner {
 			final ArrayList<Plan> plans = request.getPlan().SplitByHourPlan();
 			for (Plan plan : plans) {
 				var members = plansWithMembers.get(plan);
-				if(members == null)
-				{
+				if (members == null) {
 					plansWithMembers.put(plan, new HashSet<>(Arrays.asList(request.getMember())));
-				}
-				else members.add(request.getMember());
+				} else members.add(request.getMember());
 			}
 
 		}

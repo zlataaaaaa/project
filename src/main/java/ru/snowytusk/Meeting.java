@@ -14,16 +14,16 @@ public class Meeting {
 		this.members = new HashSet<>(members);
 	}
 
+	public Meeting(Plan plan, Member... members) {
+		this(plan, Arrays.asList(members));
+	}
+
 	public Plan getPlan() {
 		return plan;
 	}
 
 	public Set<Member> getMembers() {
 		return members;
-	}
-
-	public Meeting(Plan plan, Member... members) {
-		this(plan, Arrays.asList(members));
 	}
 
 	private void CheckParametersForNull(Plan plan, List<Member> members) {
@@ -40,6 +40,10 @@ public class Meeting {
 			throw new IllegalArgumentException("Время встречи не может быть больше 1 часа.");
 	}
 
+	@Override
+	public int hashCode() {
+		return Objects.hash(getPlan(), getMembers());
+	}
 
 	@Override
 	public boolean equals(final Object o) {
@@ -48,11 +52,6 @@ public class Meeting {
 		final Meeting meeting = (Meeting) o;
 		return getPlan().equals(meeting.getPlan()) &&
 		       getMembers().equals(meeting.getMembers());
-	}
-
-	@Override
-	public int hashCode() {
-		return Objects.hash(getPlan(), getMembers());
 	}
 
 	@Override
