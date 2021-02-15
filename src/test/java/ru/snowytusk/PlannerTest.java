@@ -8,16 +8,13 @@ import static ru.snowytusk.utils.TestValues.*;
 
 public class PlannerTest {
 	@Test
-	@DisplayName("Создание корректного планировщика с корректной встречей")
+	@DisplayName("Создание корректного планировщика с корректным запросом")
 	public void CreatePlanner() {
 		var planner = new Planner();
 
-		Plan plan = getTestPlanFor1Hour();
-		Member member = getTestMember();
+		var request = getTestRequest();
 
-		var meeting = new Meeting(plan, Arrays.asList(member));
-
-		Assertions.assertDoesNotThrow(() -> planner.addMeeting(meeting));
+		Assertions.assertDoesNotThrow(() -> planner.addRequest(request));
 	}
 
 
@@ -26,8 +23,50 @@ public class PlannerTest {
 	public void CreateIncorrectPlannerWithAddEmptyPlan() {
 		var planner = new Planner();
 
-		Assertions.assertThrows(NullPointerException.class, () -> planner.addMeeting(null));
+		Assertions.assertThrows(NullPointerException.class, () -> planner.addRequest(null));
 	}
 
+	@Test
+	void RequestsToMeetings() {
+		var planner = new Planner();
 
+
+		planner.addRequest(getTestRequest());
+		planner.addRequest(getTestRequest());
+
+		var actualMeetings = planner.RequestsToMeetings();
+
+		var expectedMeetings = new LinkedHashSet<Meeting>(Arrays.asList(
+				new Meeting(
+						new Plan(
+								new CustomDate(YEAR, MONTH, DAY_OF_MONTH, HOUR_OF_DAY + 0, MINUTE),
+								new CustomDate(YEAR, MONTH, DAY_OF_MONTH, HOUR_OF_DAY + 1, MINUTE)
+						),
+						Arrays.asList(getTestMember())
+				),
+				new Meeting(
+						new Plan(
+								new CustomDate(YEAR, MONTH, DAY_OF_MONTH, HOUR_OF_DAY + 1, MINUTE),
+								new CustomDate(YEAR, MONTH, DAY_OF_MONTH, HOUR_OF_DAY + 2, MINUTE)
+						),
+						Arrays.asList(getTestMember())
+				),
+				new Meeting(
+						new Plan(
+								new CustomDate(YEAR, MONTH, DAY_OF_MONTH, HOUR_OF_DAY + 2, MINUTE),
+								new CustomDate(YEAR, MONTH, DAY_OF_MONTH, HOUR_OF_DAY + 3, MINUTE)
+						),
+						Arrays.asList(getTestMember())
+				),
+				new Meeting(
+						new Plan(
+								new CustomDate(YEAR, MONTH, DAY_OF_MONTH, HOUR_OF_DAY + 3, MINUTE),
+								new CustomDate(YEAR, MONTH, DAY_OF_MONTH, HOUR_OF_DAY + 4, MINUTE)
+						),
+						Arrays.asList(getTestMember())
+				)
+		                                                               ));
+
+		Assertions.assertEquals(expectedMeetings, actualMeetings);
+	}
 }

@@ -33,7 +33,10 @@ public class TestValues {
 	}
 
 	public static Member getTestMember() {
-		var member = new Member("Алексей");
-		return member;
+		return new Member("Алексей");
+	}
+
+	public static Request getTestRequest() {
+		return new Request(getTestMember(), getTestPlanFor4Hours());
 	}
 }

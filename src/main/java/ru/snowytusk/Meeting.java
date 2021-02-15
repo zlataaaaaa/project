@@ -40,12 +40,11 @@ public class Meeting {
 		if (this == o) return true;
 		if (!(o instanceof Meeting)) return false;
 		final Meeting meeting = (Meeting) o;
-		return getPlan().equals(meeting.getPlan()) &&
-		       getMembers().equals(meeting.getMembers());
+		return getPlan().equals(meeting.getPlan());
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(getPlan(), getMembers());
+		return Objects.hash(getPlan());
 	}
 }

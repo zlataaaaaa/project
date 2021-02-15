@@ -42,7 +42,4 @@ public class MeetingTest {
 		Assertions.assertThrows(IllegalArgumentException.class, () -> new Meeting(getTestPlanFor4Hours(), Arrays.asList(member1, member2, member3)));
 	}
 
-	@Test
-	void MeetingSplitToHourLongM() {
-	}
 }

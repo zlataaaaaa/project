@@ -3,16 +3,29 @@ package ru.snowytusk;
 import java.util.*;
 
 public class Planner {
-	List<Meeting> meetings = new ArrayList<>();
+	List<Request> requests = new ArrayList<>();
 
-	public void addMeeting(Meeting meeting) {
-		CheckParametersForNull(meeting);
+	public void addRequest(Request request) {
+		CheckParametersForNull(request);
 
-		meetings.add(meeting);
+		requests.add(request);
 	}
 
-	private void CheckParametersForNull(Meeting meeting) {
-		if (meeting == null)
+	private void CheckParametersForNull(Request request) {
+		if (request == null)
 			throw new NullPointerException();
+	}
+
+
+	public Set<Meeting> RequestsToMeetings() {
+		Set<Meeting> meetings = new LinkedHashSet<>();
+		for (Request request : requests) {
+			final ArrayList<Plan> plans = request.getPlan().SplitByHourPlan();
+			for (Plan plan : plans) {
+				meetings.add(new Meeting(plan, Arrays.asList(request.getMember())));
+			}
+
+		}
+		return meetings;
 	}
 }
