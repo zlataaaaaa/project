@@ -1,20 +1,20 @@
 package ru.snowytusk;
 
 import java.lang.reflect.*;
+import java.time.*;
 import java.util.*;
 
 public class CustomDate {
 
-	Date date;
+	LocalDateTime date;
 
-	public Date getDate() {
+	public LocalDateTime getDate() {
 		return date;
 	}
 
 	public CustomDate(int year, int month, int dayOfMonth, int hourOfDay, int minute) {
 		CheckParametersForCorrectness(year, month, dayOfMonth, hourOfDay, minute);
-		// TODO: Проверку на время.
-		date = new GregorianCalendar(year, month, dayOfMonth, hourOfDay, minute).getTime();
+		date = new GregorianCalendar(year, month, dayOfMonth, hourOfDay, minute).toZonedDateTime().toLocalDateTime();
 	}
 
 	private void CheckParametersForCorrectness(int year, int month, int dayOfMonth, int hourOfDay, int minute) {

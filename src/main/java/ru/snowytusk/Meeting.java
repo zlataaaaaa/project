@@ -6,6 +6,14 @@ public class Meeting {
 	private Plan plan;
 	private final List<Member> members;
 
+	public Plan getPlan() {
+		return plan;
+	}
+
+	public List<Member> getMembers() {
+		return members;
+	}
+
 	public Meeting(Plan plan, List<Member> members) {
 		CheckParametersForNull(plan, members);
 		CheckMembersOnEmpty(members);
@@ -21,6 +29,7 @@ public class Meeting {
 			throw new NullPointerException();
 	}
 
+	// TODO: delete this
 	private void CheckMembersOnEmpty(List<Member> members) {
 		if (members.isEmpty())
 			throw new IllegalArgumentException("Отсутствуют участники.");

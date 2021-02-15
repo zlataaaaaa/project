@@ -1,5 +1,6 @@
 package ru.snowytusk;
 
+import com.google.common.collect.*;
 import org.junit.jupiter.api.*;
 
 import java.util.*;
@@ -30,12 +31,5 @@ public class PlannerTest {
 		Assertions.assertThrows(NullPointerException.class, () -> planner.addMeeting(null));
 	}
 
-	@Test
-	void SplitIntoPlans() {
-		// TODO: Нужно получить список всех планов без повторений
-		// TODO: Затем создать встречи по этому списку, заново пройтись по всем встречам и проверить принадлежность каждого участника календаря на конкретную встречу, если он может,
-		// то добавляем его в эту встречу.
-		// TODO: Затем удаляем встречи без участников (надо будет поправить тесты на пустой список встречи)
-		// TODO: Сортируем встречи по количеству участников, а затем по датам.
-	}
+
 }
