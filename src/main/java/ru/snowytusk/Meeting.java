@@ -31,6 +31,8 @@ public class Meeting {
 			throw new NullPointerException();
 		if (members == null)
 			throw new NullPointerException();
+		if (members.isEmpty())
+			throw new IllegalArgumentException();
 	}
 
 	private void CheckPlanMustBe1HourLong(Plan plan) {

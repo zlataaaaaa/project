@@ -7,14 +7,6 @@ public class Plan {
 	private CustomDate startDate;
 	private CustomDate endDate;
 
-	public CustomDate getStartDate() {
-		return startDate;
-	}
-
-	public CustomDate getEndDate() {
-		return endDate;
-	}
-
 	public Plan(CustomDate startDate, CustomDate endDate) {
 
 		CheckParametersForNull(startDate, endDate);
@@ -24,14 +16,20 @@ public class Plan {
 		this.endDate = endDate;
 	}
 
+	public CustomDate getStartDate() {
+		return startDate;
+	}
+
+	public CustomDate getEndDate() {
+		return endDate;
+	}
+
 	private void CheckDateRangeForCorrectness(CustomDate startDate, CustomDate endDate) {
-		if (startDate.getDate().isAfter(endDate.getDate()))
-		{
+		if (startDate.getDate().isAfter(endDate.getDate())) {
 			throw new IllegalArgumentException("Начальная дата не может быть позднее конечной.");
 		}
 
-		if (startDate.getDate().isEqual(endDate.getDate()))
-		{
+		if (startDate.getDate().isEqual(endDate.getDate())) {
 			throw new IllegalArgumentException("Начальная дата не может равна поздней. Разница должна составлять хотя бы 1 час.");
 		}
 	}
@@ -65,6 +63,11 @@ public class Plan {
 	}
 
 	@Override
+	public int hashCode() {
+		return Objects.hash(getStartDate(), getEndDate());
+	}
+
+	@Override
 	public boolean equals(final Object o) {
 		if (this == o) return true;
 		if (!(o instanceof Plan)) return false;
@@ -74,8 +77,9 @@ public class Plan {
 	}
 
 	@Override
-	public int hashCode() {
-		return Objects.hash(getStartDate(), getEndDate());
+	public String toString() {
+		return startDate.getDate() +
+		       " - " + endDate.getDate();
 	}
 
 	//		if(todayDate.after(historyDate) && todayDate.before(futureDate)) {

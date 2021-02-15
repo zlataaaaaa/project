@@ -12,4 +12,9 @@ public class Member {
 		if (name ==null )
 			throw new NullPointerException();
 	}
+
+	@Override
+	public String toString() {
+		return "'" + name + "'";
+	}
 }

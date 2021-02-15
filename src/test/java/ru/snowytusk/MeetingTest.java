@@ -33,7 +33,7 @@ public class MeetingTest {
 	@Test
 	@DisplayName("Создание некорректной встречи с пустым списком участников")
 	void CreateIncorrectMeetingWithEmptyMembers() {
-		Assertions.assertThrows(NullPointerException.class, () -> new Meeting(plan));
+		Assertions.assertThrows(IllegalArgumentException.class, () -> new Meeting(plan));
 	}
 
 	@Test

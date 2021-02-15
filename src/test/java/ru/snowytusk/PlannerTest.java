@@ -27,6 +27,7 @@ public class PlannerTest {
 	}
 
 	@Test
+	@DisplayName("Конвертация запросов во встречи")
 	void RequestsToMeetings() {
 		var planner = new Planner();
 
@@ -40,7 +41,7 @@ public class PlannerTest {
 
 		var actualMeetings = planner.RequestsToMeetings();
 
-		var expectedMeetings = new LinkedHashSet<Meeting>(Arrays.asList(
+		var expectedMeetings = new HashSet<Meeting>(Arrays.asList(
 				new Meeting(
 						new Plan(
 								new CustomDate(YEAR, MONTH, DAY_OF_MONTH, HOUR_OF_DAY + 0, MINUTE),
@@ -72,5 +73,7 @@ public class PlannerTest {
 		                                                               ));
 
 		Assertions.assertEquals(expectedMeetings, actualMeetings);
+
+		Planner.PrintMeetings(actualMeetings);
 	}
 }

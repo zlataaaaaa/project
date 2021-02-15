@@ -1,10 +1,23 @@
 package ru.snowytusk;
 
+import org.immutables.value.internal.$processor$.meta.$Proto.*;
+
 import java.util.*;
 import java.util.Map.*;
 
 public class Planner {
 	List<Request> requests = new ArrayList<>();
+
+	static void PrintMeetings(Set<Meeting> actualMeetings) {
+		var meetings = new ArrayList<>(actualMeetings);
+		meetings.sort(Comparator.comparing((Meeting meeting) -> meeting.getMembers().size()).reversed().thenComparing(meeting -> meeting.getPlan().getStartDate().getDate()));
+
+		for (Meeting meeting : meetings) {
+			System.out.println("Встреча с количеством участников: " + meeting.getMembers().size());
+			System.out.print("Участники: " + meeting.getMembers() + System.lineSeparator());
+			System.out.println("Время встречи: " + meeting.getPlan() + System.lineSeparator());
+		}
+	}
 
 	public void addRequest(Request request) {
 		CheckParametersForNull(request);
@@ -33,7 +46,7 @@ public class Planner {
 
 		}
 
-		var meetings = new LinkedHashSet<Meeting>();
+		var meetings = new HashSet<Meeting>();
 		for (Entry<Plan, HashSet<Member>> planWithMembers : plansWithMembers.entrySet()) {
 			meetings.add(new Meeting(planWithMembers.getKey(), new ArrayList<>(planWithMembers.getValue())));
 		}
