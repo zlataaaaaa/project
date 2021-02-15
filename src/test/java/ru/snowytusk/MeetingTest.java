@@ -5,9 +5,6 @@ import org.junit.jupiter.api.*;
 import static ru.snowytusk.utils.TestValues.*;
 
 public class MeetingTest {
-
-	// TODO: Повторяющиеся или пересекающиеся планы одного участника?
-
 	Plan plan = new Plan(getTestStartDate(),
 	                     new CustomDate(YEAR, MONTH, DAY_OF_MONTH, HOUR_OF_DAY + 1, MINUTE)
 	);
