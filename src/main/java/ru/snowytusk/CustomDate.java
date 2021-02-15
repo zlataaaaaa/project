@@ -1,12 +1,11 @@
 package ru.snowytusk;
 
-import java.lang.reflect.*;
 import java.time.*;
 import java.util.*;
 
 public class CustomDate {
 
-	LocalDateTime date;
+	private LocalDateTime date;
 
 	public CustomDate(LocalDateTime date) {
 		this.date = date;

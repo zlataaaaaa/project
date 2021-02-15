@@ -2,8 +2,6 @@ package ru.snowytusk;
 
 import org.junit.jupiter.api.*;
 
-import java.util.*;
-
 import static ru.snowytusk.utils.TestValues.*;
 
 public class MeetingTest {

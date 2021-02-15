@@ -45,21 +45,21 @@ public class Plan {
 		var plans = new ArrayList<Plan>();
 
 
-		var startDatePlan = new CustomDate(startDate.date);
-		var endDatePlan = new CustomDate(startDatePlan.date.plusHours(1));
+		var startDatePlan = new CustomDate(startDate.getDate());
+		var endDatePlan = new CustomDate(startDatePlan.getDate().plusHours(1));
 
 		for (long counter = 0; counter < hours(); counter++) {
 			var plan = new Plan(startDatePlan, endDatePlan);
 			plans.add(plan);
 			startDatePlan = endDatePlan;
-			endDatePlan = new CustomDate(endDatePlan.date.plusHours(1));
+			endDatePlan = new CustomDate(endDatePlan.getDate().plusHours(1));
 		}
 
 		return plans;
 	}
 
 	public long hours() {
-		return Duration.between(startDate.date, endDate.date).toHours();
+		return Duration.between(startDate.getDate(), endDate.getDate()).toHours();
 	}
 
 	@Override
@@ -81,8 +81,4 @@ public class Plan {
 		return startDate.getDate() +
 		       " - " + endDate.getDate();
 	}
-
-	//		if(todayDate.after(historyDate) && todayDate.before(futureDate)) {
-	//			// In between
-	//		}
 }

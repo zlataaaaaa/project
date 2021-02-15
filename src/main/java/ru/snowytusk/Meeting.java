@@ -11,7 +11,7 @@ public class Meeting {
 		CheckPlanMustBe1HourLong(plan);
 
 		this.plan = plan;
-		this.members = new HashSet<Member>(members);
+		this.members = new HashSet<>(members);
 	}
 
 	public Plan getPlan() {
@@ -53,5 +53,16 @@ public class Meeting {
 	@Override
 	public int hashCode() {
 		return Objects.hash(getPlan(), getMembers());
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder stringBuilder = new StringBuilder();
+
+		stringBuilder.append("Встреча с количеством участников: " + getMembers().size() + System.lineSeparator());
+		stringBuilder.append("Участники: " + getMembers() + System.lineSeparator());
+		stringBuilder.append("Время встречи: " + getPlan() + System.lineSeparator());
+
+		return stringBuilder.toString();
 	}
 }

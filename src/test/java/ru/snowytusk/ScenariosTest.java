@@ -36,7 +36,7 @@ public class ScenariosTest {
 
 		var actualMeetings = planner.RequestsToMeetings();
 
-		var expectedMeetings = new LinkedHashSet<Meeting>(Arrays.asList(
+		var expectedMeetings = new LinkedHashSet<>(Arrays.asList(
 				new Meeting(
 						new Plan(
 								new CustomDate(YEAR, MONTH, DAY_OF_MONTH, HOUR_OF_DAY - 1, MINUTE),
@@ -72,7 +72,7 @@ public class ScenariosTest {
 						),
 						member1
 				)
-		                                                               ));
+		                                                        ));
 
 		Assertions.assertEquals(expectedMeetings, actualMeetings);
 

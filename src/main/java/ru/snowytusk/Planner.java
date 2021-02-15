@@ -1,7 +1,5 @@
 package ru.snowytusk;
 
-import org.immutables.value.internal.$processor$.meta.$Proto.*;
-
 import java.util.*;
 import java.util.Map.*;
 
@@ -13,9 +11,7 @@ public class Planner {
 		meetings.sort(Comparator.comparing((Meeting meeting) -> meeting.getMembers().size()).reversed().thenComparing(meeting -> meeting.getPlan().getStartDate().getDate()));
 
 		for (Meeting meeting : meetings) {
-			System.out.println("Встреча с количеством участников: " + meeting.getMembers().size());
-			System.out.print("Участники: " + meeting.getMembers() + System.lineSeparator());
-			System.out.println("Время встречи: " + meeting.getPlan() + System.lineSeparator());
+			System.out.println(meeting);
 		}
 	}
 

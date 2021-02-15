@@ -41,7 +41,7 @@ public class PlannerTest {
 
 		var actualMeetings = planner.RequestsToMeetings();
 
-		var expectedMeetings = new HashSet<Meeting>(Arrays.asList(
+		var expectedMeetings = new HashSet<>(Arrays.asList(
 				new Meeting(
 						new Plan(
 								new CustomDate(YEAR, MONTH, DAY_OF_MONTH, HOUR_OF_DAY + 0, MINUTE),
@@ -70,7 +70,7 @@ public class PlannerTest {
 						),
 						member1, member2, member3
 				)
-		                                                               ));
+		                                                  ));
 
 		Assertions.assertEquals(expectedMeetings, actualMeetings);
 
