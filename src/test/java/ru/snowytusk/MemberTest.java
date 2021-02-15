@@ -1,12 +1,13 @@
 package ru.snowytusk;
 
 import org.junit.jupiter.api.*;
+import ru.snowytusk.utils.*;
 
 public class MemberTest {
 	@Test
 	@DisplayName("Создание корректного участника")
 	public void CreateMember() {
-		Assertions.assertDoesNotThrow(() -> new Member("Алексей"));
+		Assertions.assertDoesNotThrow(() -> TestValues.getTestMember());
 	}
 
 	@Test

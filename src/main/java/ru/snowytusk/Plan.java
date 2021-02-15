@@ -1,13 +1,15 @@
 package ru.snowytusk;
 
+import lombok.*;
+
 import java.time.*;
 import java.time.temporal.*;
 import java.util.*;
 import java.util.concurrent.*;
 
 public class Plan {
-	private final CustomDate startDate;
-	private final CustomDate endDate;
+	private CustomDate startDate;
+	private CustomDate endDate;
 
 	public CustomDate getStartDate() {
 		return startDate;
@@ -46,12 +48,21 @@ public class Plan {
 	}
 
 	public ArrayList<Plan> SplitByHourPlan() {
-		var planList = new ArrayList<Plan>();
+		var plans = new ArrayList<Plan>();
 
-		long diffInHours = java.time.Duration.between(startDate.date, endDate.date).toHours();
-		System.out.println(diffInHours);
+		long differenceInHours = java.time.Duration.between(startDate.date, endDate.date).toHours();
 
-		return planList;
+		var startDatePlan = new CustomDate(startDate.date);
+		var endDatePlan = new CustomDate(startDatePlan.date.plusHours(1));
+
+		for (long counter = 0; counter < differenceInHours; counter++) {
+			var plan = new Plan(startDatePlan, endDatePlan);
+			plans.add(plan);
+			startDatePlan = endDatePlan;
+			endDatePlan = new CustomDate(endDatePlan.date.plusHours(1));
+		}
+
+		return plans;
 	}
 
 	//		if(todayDate.after(historyDate) && todayDate.before(futureDate)) {

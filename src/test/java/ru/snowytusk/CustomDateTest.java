@@ -2,50 +2,52 @@ package ru.snowytusk;
 
 import org.junit.jupiter.api.*;
 
-import java.util.*;
+import static ru.snowytusk.utils.TestValues.*;
 
 public class CustomDateTest {
+
 	@Test
 	@DisplayName("Создание корректной даты")
 	void CreateCorrectCustomDate() {
-		Assertions.assertDoesNotThrow(()->new CustomDate(2021, 02, 15, 12, 0));
+		Assertions.assertDoesNotThrow(()-> getTestStartDate());
+		Assertions.assertDoesNotThrow(()-> getTestEndDate());
 	}
 
 	@Test
 	@DisplayName("Создание даты с некорректным годом")
 	void CreateNotCorrectCustomDateWithNegativeYear() {
-		Assertions.assertThrows(IllegalArgumentException.class,()->new CustomDate(-2021,2, 15, 12, 10));
+		Assertions.assertThrows(IllegalArgumentException.class,()->new CustomDate(-YEAR, MONTH, DAY_OF_MONTH, HOUR_OF_DAY, MINUTE));
 	}
 
 	@Test
 	@DisplayName("Создание даты с некорректным месяцем")
 	void CreateNotCorrectCustomDateWithNegativeMonth() {
-		Assertions.assertThrows(IllegalArgumentException.class,()->new CustomDate(2021, -2, 15, 12, 10));
-		Assertions.assertThrows(IllegalArgumentException.class,()->new CustomDate(2021, 0, 15, 12, 10));
-		Assertions.assertThrows(IllegalArgumentException.class,()->new CustomDate(2021, 13, 15, 12, 10));
+		Assertions.assertThrows(IllegalArgumentException.class,()->new CustomDate(YEAR, -MONTH, DAY_OF_MONTH, HOUR_OF_DAY, MINUTE));
+		Assertions.assertThrows(IllegalArgumentException.class,()->new CustomDate(YEAR, 0, DAY_OF_MONTH, HOUR_OF_DAY, MINUTE));
+		Assertions.assertThrows(IllegalArgumentException.class,()->new CustomDate(YEAR, 13, DAY_OF_MONTH, HOUR_OF_DAY, MINUTE));
 	}
 
 	@Test
 	@DisplayName("Создание даты с некорректным днем месяца")
 	void CreateNotCorrectCustomDateWithNegativeDayOfMonth() {
-		Assertions.assertThrows(IllegalArgumentException.class,()->new CustomDate(2021, 2, -15, 12, 10));
-		Assertions.assertThrows(IllegalArgumentException.class,()->new CustomDate(2021, 2, 0, 12, 10));
-		Assertions.assertThrows(IllegalArgumentException.class,()->new CustomDate(2021, 2, 32, 12, 10));
+		Assertions.assertThrows(IllegalArgumentException.class,()->new CustomDate(YEAR, MONTH, -DAY_OF_MONTH, HOUR_OF_DAY, MINUTE));
+		Assertions.assertThrows(IllegalArgumentException.class,()->new CustomDate(YEAR, MONTH, 0, HOUR_OF_DAY, MINUTE));
+		Assertions.assertThrows(IllegalArgumentException.class,()->new CustomDate(YEAR, MONTH, 32, HOUR_OF_DAY, MINUTE));
 	}
 
 	@Test
 	@DisplayName("Создание даты с некорректным часом дня")
 	void CreateNotCorrectCustomDateWithNegativeHourOfDay() {
-		Assertions.assertThrows(IllegalArgumentException.class,()->new CustomDate(2021, 2, 15, -12, 10));
-		Assertions.assertThrows(IllegalArgumentException.class,()->new CustomDate(2021, 2, 15, 25, 10));
+		Assertions.assertThrows(IllegalArgumentException.class,()->new CustomDate(YEAR, MONTH, DAY_OF_MONTH, -HOUR_OF_DAY, MINUTE));
+		Assertions.assertThrows(IllegalArgumentException.class,()->new CustomDate(YEAR, MONTH, DAY_OF_MONTH, 25, MINUTE));
 	}
 
 	@Test
 	@DisplayName("Создание даты с некорректными минутами")
 	void CreateNotCorrectCustomDateWithNegativeMinute() {
-		Assertions.assertThrows(IllegalArgumentException.class, ()->new CustomDate(2021, 2, 15, 12, -10));
-		Assertions.assertThrows(IllegalArgumentException.class, ()->new CustomDate(2021, 2, 15, 12, 61));
-		Assertions.assertThrows(IllegalArgumentException.class, ()->new CustomDate(2021, 2, 15, 12, 1));
+		Assertions.assertThrows(IllegalArgumentException.class, ()->new CustomDate(YEAR, MONTH, DAY_OF_MONTH, HOUR_OF_DAY, -10));
+		Assertions.assertThrows(IllegalArgumentException.class, ()->new CustomDate(YEAR, MONTH, DAY_OF_MONTH, HOUR_OF_DAY, 61));
+		Assertions.assertThrows(IllegalArgumentException.class, ()->new CustomDate(YEAR, MONTH, DAY_OF_MONTH, HOUR_OF_DAY, 1));
 	}
 
 }

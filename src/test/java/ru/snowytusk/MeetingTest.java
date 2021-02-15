@@ -4,14 +4,13 @@ import org.junit.jupiter.api.*;
 
 import java.util.*;
 
+import static ru.snowytusk.utils.TestValues.*;
+
 public class MeetingTest {
 
 	// TODO: Повторяющиеся или пересекающиеся планы одного участника?
 
-	Plan plan = new Plan(
-			new CustomDate(2021, 02, 15, 12, 0),
-			new CustomDate(2021, 02, 15, 16, 0)
-	);
+	Plan plan = getTestPlan();
 
 	Member member1 = new Member("Алексей");
 	Member member2 = new Member("Роман");

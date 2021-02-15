@@ -8,6 +8,10 @@ public class CustomDate {
 
 	LocalDateTime date;
 
+	public CustomDate(LocalDateTime date) {
+		this.date = date;
+	}
+
 	public LocalDateTime getDate() {
 		return date;
 	}
