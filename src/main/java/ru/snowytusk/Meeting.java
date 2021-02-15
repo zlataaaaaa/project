@@ -4,28 +4,32 @@ import java.util.*;
 
 public class Meeting {
 	private Plan plan;
-	private final List<Member> members;
-
-	public Plan getPlan() {
-		return plan;
-	}
-
-	public List<Member> getMembers() {
-		return members;
-	}
+	private Set<Member> members;
 
 	public Meeting(Plan plan, List<Member> members) {
 		CheckParametersForNull(plan, members);
 		CheckPlanMustBe1HourLong(plan);
 
 		this.plan = plan;
-		this.members = members;
+		this.members = new HashSet<Member>(members);
 	}
 
-	private void CheckParametersForNull(Plan plan, List<Member> member) {
+	public Plan getPlan() {
+		return plan;
+	}
+
+	public Set<Member> getMembers() {
+		return members;
+	}
+
+	public Meeting(Plan plan, Member... members) {
+		this(plan, Arrays.asList(members));
+	}
+
+	private void CheckParametersForNull(Plan plan, List<Member> members) {
 		if (plan == null)
 			throw new NullPointerException();
-		if (member == null)
+		if (members == null)
 			throw new NullPointerException();
 	}
 
@@ -40,11 +44,12 @@ public class Meeting {
 		if (this == o) return true;
 		if (!(o instanceof Meeting)) return false;
 		final Meeting meeting = (Meeting) o;
-		return getPlan().equals(meeting.getPlan());
+		return getPlan().equals(meeting.getPlan()) &&
+		       getMembers().equals(meeting.getMembers());
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(getPlan());
+		return Objects.hash(getPlan(), getMembers());
 	}
 }

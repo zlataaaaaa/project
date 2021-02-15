@@ -21,25 +21,25 @@ public class MeetingTest {
 	@Test
 	@DisplayName("Создание корректной встречи")
 	void CreateCorrectMeeting() {
-		Assertions.assertDoesNotThrow(() -> new Meeting(plan, Arrays.asList(member1, member2, member3)));
+		Assertions.assertDoesNotThrow(() -> new Meeting(plan, member1, member2, member3));
 	}
 
 	@Test
 	@DisplayName("Создание некорректной встречи с пустым планом")
 	void CreateIncorrectMeetingWithEmptyPlan() {
-		Assertions.assertThrows(NullPointerException.class, () -> new Meeting(null, null));
+		Assertions.assertThrows(NullPointerException.class, () -> new Meeting(null));
 	}
 
 	@Test
 	@DisplayName("Создание некорректной встречи с пустым списком участников")
 	void CreateIncorrectMeetingWithEmptyMembers() {
-		Assertions.assertThrows(NullPointerException.class, () -> new Meeting(plan, null));
+		Assertions.assertThrows(NullPointerException.class, () -> new Meeting(plan));
 	}
 
 	@Test
 	@DisplayName("Создание некорректной встречи с планом, превыщающим один час")
 	void CreateIncorrectMeeting() {
-		Assertions.assertThrows(IllegalArgumentException.class, () -> new Meeting(getTestPlanFor4Hours(), Arrays.asList(member1, member2, member3)));
+		Assertions.assertThrows(IllegalArgumentException.class, () -> new Meeting(getTestPlanFor4Hours(), member1, member2, member3));
 	}
 
 }

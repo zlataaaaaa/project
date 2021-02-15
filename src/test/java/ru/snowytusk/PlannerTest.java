@@ -30,9 +30,13 @@ public class PlannerTest {
 	void RequestsToMeetings() {
 		var planner = new Planner();
 
+		var member1 = getTestMember();
+		var member2 = getTestMember();
+		var member3 = getTestMember();
 
-		planner.addRequest(getTestRequest());
-		planner.addRequest(getTestRequest());
+		planner.addRequest(new Request(member1, getTestPlanFor4Hours()));
+		planner.addRequest(new Request(member2,getTestPlanFor4Hours()));
+		planner.addRequest(new Request(member3,getTestPlanFor4Hours()));
 
 		var actualMeetings = planner.RequestsToMeetings();
 
@@ -42,28 +46,28 @@ public class PlannerTest {
 								new CustomDate(YEAR, MONTH, DAY_OF_MONTH, HOUR_OF_DAY + 0, MINUTE),
 								new CustomDate(YEAR, MONTH, DAY_OF_MONTH, HOUR_OF_DAY + 1, MINUTE)
 						),
-						Arrays.asList(getTestMember())
+						member1, member2, member3
 				),
 				new Meeting(
 						new Plan(
 								new CustomDate(YEAR, MONTH, DAY_OF_MONTH, HOUR_OF_DAY + 1, MINUTE),
 								new CustomDate(YEAR, MONTH, DAY_OF_MONTH, HOUR_OF_DAY + 2, MINUTE)
 						),
-						Arrays.asList(getTestMember())
+						member1, member2, member3
 				),
 				new Meeting(
 						new Plan(
 								new CustomDate(YEAR, MONTH, DAY_OF_MONTH, HOUR_OF_DAY + 2, MINUTE),
 								new CustomDate(YEAR, MONTH, DAY_OF_MONTH, HOUR_OF_DAY + 3, MINUTE)
 						),
-						Arrays.asList(getTestMember())
+						member1, member2, member3
 				),
 				new Meeting(
 						new Plan(
 								new CustomDate(YEAR, MONTH, DAY_OF_MONTH, HOUR_OF_DAY + 3, MINUTE),
 								new CustomDate(YEAR, MONTH, DAY_OF_MONTH, HOUR_OF_DAY + 4, MINUTE)
 						),
-						Arrays.asList(getTestMember())
+						member1, member2, member3
 				)
 		                                                               ));
 

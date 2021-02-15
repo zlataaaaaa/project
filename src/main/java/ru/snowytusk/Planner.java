@@ -1,6 +1,7 @@
 package ru.snowytusk;
 
 import java.util.*;
+import java.util.Map.*;
 
 public class Planner {
 	List<Request> requests = new ArrayList<>();
@@ -18,14 +19,25 @@ public class Planner {
 
 
 	public Set<Meeting> RequestsToMeetings() {
-		Set<Meeting> meetings = new LinkedHashSet<>();
+		Map<Plan, HashSet<Member>> plansWithMembers = new LinkedHashMap<>();
 		for (Request request : requests) {
 			final ArrayList<Plan> plans = request.getPlan().SplitByHourPlan();
 			for (Plan plan : plans) {
-				meetings.add(new Meeting(plan, Arrays.asList(request.getMember())));
+				var members = plansWithMembers.get(plan);
+				if(members == null)
+				{
+					plansWithMembers.put(plan, new HashSet<>(Arrays.asList(request.getMember())));
+				}
+				else members.add(request.getMember());
 			}
 
 		}
+
+		var meetings = new LinkedHashSet<Meeting>();
+		for (Entry<Plan, HashSet<Member>> planWithMembers : plansWithMembers.entrySet()) {
+			meetings.add(new Meeting(planWithMembers.getKey(), new ArrayList<>(planWithMembers.getValue())));
+		}
+
 		return meetings;
 	}
 }
