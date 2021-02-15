@@ -12,7 +12,7 @@ public class MemberTest {
 
 	@Test
 	@DisplayName("Создание некорректного участника с пустым именем")
-	public void CreateNotCorrectMemberWithNull() {
+	public void CreateIncorrectMemberWithNull() {
 		Assertions.assertThrows(NullPointerException.class, () -> new Member(null));
 	}
 }

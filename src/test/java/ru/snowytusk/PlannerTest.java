@@ -12,7 +12,7 @@ public class PlannerTest {
 	public void CreatePlanner() {
 		var planner = new Planner();
 
-		Plan plan = getTestPlan();
+		Plan plan = getTestPlanFor1Hour();
 		Member member = getTestMember();
 
 		var meeting = new Meeting(plan, Arrays.asList(member));
@@ -23,7 +23,7 @@ public class PlannerTest {
 
 	@Test
 	@DisplayName("Создание некорректного планировщика с пустой встречей")
-	public void CreateNotCorrectPlannerWithAddEmptyPlan() {
+	public void CreateIncorrectPlannerWithAddEmptyPlan() {
 		var planner = new Planner();
 
 		Assertions.assertThrows(NullPointerException.class, () -> planner.addMeeting(null));

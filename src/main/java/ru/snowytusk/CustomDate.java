@@ -35,4 +35,17 @@ public class CustomDate {
 
 
 	}
+
+	@Override
+	public boolean equals(final Object o) {
+		if (this == o) return true;
+		if (!(o instanceof CustomDate)) return false;
+		final CustomDate that = (CustomDate) o;
+		return getDate().equals(that.getDate());
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(getDate());
+	}
 }

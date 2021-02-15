@@ -1,11 +1,7 @@
 package ru.snowytusk;
 
-import lombok.*;
-
 import java.time.*;
-import java.time.temporal.*;
 import java.util.*;
-import java.util.concurrent.*;
 
 public class Plan {
 	private CustomDate startDate;
@@ -50,12 +46,11 @@ public class Plan {
 	public ArrayList<Plan> SplitByHourPlan() {
 		var plans = new ArrayList<Plan>();
 
-		long differenceInHours = java.time.Duration.between(startDate.date, endDate.date).toHours();
 
 		var startDatePlan = new CustomDate(startDate.date);
 		var endDatePlan = new CustomDate(startDatePlan.date.plusHours(1));
 
-		for (long counter = 0; counter < differenceInHours; counter++) {
+		for (long counter = 0; counter < hours(); counter++) {
 			var plan = new Plan(startDatePlan, endDatePlan);
 			plans.add(plan);
 			startDatePlan = endDatePlan;
@@ -63,6 +58,24 @@ public class Plan {
 		}
 
 		return plans;
+	}
+
+	public long hours() {
+		return Duration.between(startDate.date, endDate.date).toHours();
+	}
+
+	@Override
+	public boolean equals(final Object o) {
+		if (this == o) return true;
+		if (!(o instanceof Plan)) return false;
+		final Plan plan = (Plan) o;
+		return getStartDate().equals(plan.getStartDate()) &&
+		       getEndDate().equals(plan.getEndDate());
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(getStartDate(), getEndDate());
 	}
 
 	//		if(todayDate.after(historyDate) && todayDate.before(futureDate)) {

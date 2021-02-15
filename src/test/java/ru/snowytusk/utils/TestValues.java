@@ -10,10 +10,17 @@ public class TestValues {
 	public static final int HOUR_OF_DAY = 12;
 	public static final int MINUTE = 0;
 
-	public static Plan getTestPlan() {
+	public static Plan getTestPlanFor4Hours() {
 		return new Plan(
 				getTestStartDate(),
 				getTestEndDate()
+		);
+	}
+
+	public static Plan getTestPlanFor1Hour() {
+		return new Plan(
+				getTestStartDate(),
+				new CustomDate(YEAR, MONTH, DAY_OF_MONTH, HOUR_OF_DAY + 1, MINUTE)
 		);
 	}
 

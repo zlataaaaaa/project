@@ -12,36 +12,43 @@ public class PlanTest {
 	@Test
 	@DisplayName("Создание корректного плана")
 	public void CreateCorrectPlan() {
-		Assertions.assertDoesNotThrow(() -> getTestPlan());
+		Assertions.assertDoesNotThrow(() -> getTestPlanFor4Hours());
 	}
 
 	@Test
 	@DisplayName("Создание некорректного плана с пустой начальной датой")
-	public void CreateNotCorrectPlanWithEmptyStartDate() {
+	public void CreateIncorrectPlanWithEmptyStartDate() {
 		Assertions.assertThrows(NullPointerException.class, () -> new Plan(null, getTestEndDate()));
 	}
 
 	@Test
 	@DisplayName("Создание некорректного плана с пустой конечной датой")
-	public void CreateNotCorrectPlanWithEmptyEndDate() {
+	public void CreateIncorrectPlanWithEmptyEndDate() {
 		Assertions.assertThrows(NullPointerException.class, () -> new Plan(getTestStartDate(), null));
 	}
 
 	@Test
 	@DisplayName("Создание некорректного плана с неправильным диапазоном дат")
-	public void CreatePlanWithNotCorrectRangeDate() {
+	public void CreatePlanWithIncorrectRangeDate() {
 		Assertions.assertThrows(IllegalArgumentException.class, () -> new Plan(getTestEndDate(), getTestStartDate()));
 	}
 
 	@Test
 	@DisplayName("Создание некорректного плана с совпадающими датами начала и конца")
-	public void CreateNotCorrectPlanWithMatchingStartAndEndDates() {
+	public void CreateIncorrectPlanWithMatchingStartAndEndDates() {
 		Assertions.assertThrows(IllegalArgumentException.class, () -> new Plan(getTestStartDate(), getTestStartDate()));
 	}
 
 	@Test
-	void SplitIntoPlans() {
-		var plan = getTestPlan();
+	@DisplayName("Проверка equals")
+	void EqualsPlans() {
+		Assertions.assertEquals(getTestPlanFor4Hours(), getTestPlanFor4Hours());
+	}
+
+	@Test
+	@DisplayName("Разделение одного большого плана на планы по 1 часу")
+	void PlanSplitToHourLongPlans() {
+		var plan = getTestPlanFor4Hours();
 
 		List<Plan> expectedPlans = Arrays.asList(
 				new Plan(
@@ -64,15 +71,13 @@ public class PlanTest {
 
 		ArrayList<Plan> actualPlans = plan.SplitByHourPlan();
 
-		for (int counter = 0; counter < 4; counter++) {
-			Assertions.assertEquals(expectedPlans.get(counter).getStartDate().date, actualPlans.get(counter).getStartDate().date);
-			Assertions.assertEquals(expectedPlans.get(counter).getEndDate().date, actualPlans.get(counter).getEndDate().date);
-		}
-
+		Assertions.assertEquals(expectedPlans, actualPlans);
 		// TODO: Нужно получить список всех планов без повторений
 		// TODO: Затем создать встречи по этому списку, заново пройтись по всем встречам и проверить принадлежность каждого участника календаря на конкретную встречу, если он может,
 		// то добавляем его в эту встречу.
 		// TODO: Затем удаляем встречи без участников (надо будет поправить тесты на пустой список встречи)
 		// TODO: Сортируем встречи по количеству участников, а затем по датам.
 	}
+
+
 }

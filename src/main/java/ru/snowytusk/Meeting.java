@@ -16,7 +16,7 @@ public class Meeting {
 
 	public Meeting(Plan plan, List<Member> members) {
 		CheckParametersForNull(plan, members);
-		CheckMembersOnEmpty(members);
+		CheckPlanMustBe1HourLong(plan);
 
 		this.plan = plan;
 		this.members = members;
@@ -29,9 +29,23 @@ public class Meeting {
 			throw new NullPointerException();
 	}
 
-	// TODO: delete this
-	private void CheckMembersOnEmpty(List<Member> members) {
-		if (members.isEmpty())
-			throw new IllegalArgumentException("Отсутствуют участники.");
+	private void CheckPlanMustBe1HourLong(Plan plan) {
+		if (plan.hours() > 1)
+			throw new IllegalArgumentException("Время встречи не может быть больше 1 часа.");
+	}
+
+
+	@Override
+	public boolean equals(final Object o) {
+		if (this == o) return true;
+		if (!(o instanceof Meeting)) return false;
+		final Meeting meeting = (Meeting) o;
+		return getPlan().equals(meeting.getPlan()) &&
+		       getMembers().equals(meeting.getMembers());
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(getPlan(), getMembers());
 	}
 }
