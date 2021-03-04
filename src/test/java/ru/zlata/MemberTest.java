@@ -1,7 +1,7 @@
-package ru.snowytusk;
+package ru.zlata;
 
 import org.junit.jupiter.api.*;
-import ru.snowytusk.utils.*;
+import ru.zlata.utils.*;
 
 public class MemberTest {
 	@Test

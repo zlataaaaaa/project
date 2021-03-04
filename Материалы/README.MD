@@ -1,5 +1,9 @@
 Материалы, использованные в работе:
 
+
+Oracle JDK 15: https://www.oracle.com/ru/java/technologies/javase-jdk15-downloads.html#license-lightbox
+Конкретная версия Java.
+
 Геттеры и Сеттеры: https://vertex-academy.com/tutorials/ru/gettery-i-settery/?doing_wp_cron=1613423557.9797959327697753906250
 Специальные методы. Геттер для чтения. Сеттер для записи.
 

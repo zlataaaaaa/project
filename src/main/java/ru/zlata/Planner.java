@@ -1,7 +1,6 @@
-package ru.snowytusk;
+package ru.zlata;
 
 import java.util.*;
-import java.util.Map.*;
 
 public class Planner {
 	List<Request> requests = new ArrayList<>();
@@ -28,7 +27,7 @@ public class Planner {
 
 
 	public Set<Meeting> RequestsToMeetings() {
-		Map<Plan, HashSet<Member>> plansWithMembers = new LinkedHashMap<>();
+		LinkedHashMap<Plan, HashSet<Member>> plansWithMembers = new LinkedHashMap<>();
 		for (Request request : requests) {
 			final ArrayList<Plan> plans = request.getPlan().SplitByHourPlan();
 			for (Plan plan : plans) {

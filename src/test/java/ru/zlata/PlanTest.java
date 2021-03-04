@@ -1,10 +1,10 @@
-package ru.snowytusk;
+package ru.zlata;
 
 import org.junit.jupiter.api.*;
 
 import java.util.*;
 
-import static ru.snowytusk.utils.TestValues.*;
+import static ru.zlata.utils.TestValues.*;
 
 public class PlanTest {
 

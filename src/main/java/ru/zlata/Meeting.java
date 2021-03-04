@@ -1,4 +1,4 @@
-package ru.snowytusk;
+package ru.zlata;
 
 import java.util.*;
 

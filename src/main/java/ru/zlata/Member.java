@@ -1,4 +1,4 @@
-package ru.snowytusk;
+package ru.zlata;
 
 public class Member {
 	private String name;

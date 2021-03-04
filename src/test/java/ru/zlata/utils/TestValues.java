@@ -1,6 +1,6 @@
-package ru.snowytusk.utils;
+package ru.zlata.utils;
 
-import ru.snowytusk.*;
+import ru.zlata.*;
 
 public class TestValues {
 

@@ -1,8 +1,8 @@
-package ru.snowytusk;
+package ru.zlata;
 
 import org.junit.jupiter.api.*;
 
-import static ru.snowytusk.utils.TestValues.*;
+import static ru.zlata.utils.TestValues.*;
 
 public class MeetingTest {
 	Plan plan = new Plan(getTestStartDate(),

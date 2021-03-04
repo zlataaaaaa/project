@@ -1,4 +1,4 @@
-package ru.snowytusk;
+package ru.zlata;
 
 import java.time.*;
 import java.util.*;
@@ -42,8 +42,8 @@ public class Plan {
 	}
 
 	public ArrayList<Plan> SplitByHourPlan() {
+		// Создаем новый список планов
 		var plans = new ArrayList<Plan>();
-
 
 		var startDatePlan = new CustomDate(startDate.getDate());
 		var endDatePlan = new CustomDate(startDatePlan.getDate().plusHours(1));
